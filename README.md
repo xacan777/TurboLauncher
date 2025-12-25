@@ -48,6 +48,7 @@
    ```bash
    yarn install
    ```
+   Если `vue-cli-service` не находится, убедитесь, что установка завершилась без ошибок (команда должна создать `node_modules` и бинарь `./node_modules/.bin/vue-cli-service`).
 2. Установите переменную API (опционально):
    ```bash
    export VUE_APP_API_BASE_URL="http://localhost:5000/api"
@@ -60,6 +61,14 @@
    ```bash
    yarn build
    ```
+5. Electron dev:
+   ```bash
+   yarn electron:serve
+   ```
+   Если вы видите сообщение `'vue-cli-service' is not recognized`, проверьте:
+   - выполнен ли `yarn install` под текущим пользователем;
+   - нет ли конфликта версий Node/Yarn (рекомендуется Yarn 1.x и Node 16+);
+   - что вы запускаете команду из корня проекта, а не из другой директории.
 
 ## Основные экраны
 - **Главная** – новости, статус серверов, быстрый старт клиента.
