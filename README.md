@@ -49,6 +49,9 @@
    yarn install
    ```
    Если `vue-cli-service` не находится, убедитесь, что установка завершилась без ошибок (команда должна создать `node_modules` и бинарь `./node_modules/.bin/vue-cli-service`).
+   > ⚠️ Требуемая версия Node для зависимостей — 16.x (рекомендуется 16 LTS).  
+   > На Windows можно быстро переключиться через nvm-windows:  
+   > `nvm install 16 && nvm use 16`
 2. Установите переменную API (опционально):
    ```bash
    export VUE_APP_API_BASE_URL="http://localhost:5000/api"
