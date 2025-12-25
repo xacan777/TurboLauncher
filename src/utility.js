@@ -18,7 +18,7 @@ const md5FileReadStream = (path) =>
     });
   });
 
-const showNotify = ({ title = 'R2Legacy', message, pushOnFocus = true }) => {
+const showNotify = ({ title = 'TURBO', message, pushOnFocus = true }) => {
   const focus = BrowserWindow.getAllWindows()[0].isFocused();
   const onShow = pushOnFocus ? true : !focus;
   if (onShow) {
