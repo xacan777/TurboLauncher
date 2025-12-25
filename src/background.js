@@ -129,7 +129,7 @@ ipcMain.on('auth', (event, { login, password }) => {
     });
 });
 
-ipcMain.on('notfy', (event, { title = 'R2Legacy', message, pushOnFocus = true }) => {
+ipcMain.on('notfy', (event, { title = 'TURBO', message, pushOnFocus = true }) => {
   utility.showNotify({
     title,
     message,
