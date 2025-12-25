@@ -1,0 +1,411 @@
+.download-container, .references {
+  overflow: hidden;
+  position: relative
+}
+
+.references, .tutorial {
+  padding: 32px;
+  gap: 24px;
+  position: relative
+}
+
+.download-torrent p, .tutorial p {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #fff
+}
+
+.centering-content, body.hidden:not(.register) .download-modal {
+  display: flex !important;
+  align-items: center;
+  justify-content: center
+}
+
+.download-container {
+  font-family: Proxima, sans-serif;
+  display: flex;
+  border-radius: 16px
+}
+
+.references {
+  background: #111113;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #030202;
+  border-top: 2px solid #bc1d20
+}
+
+.tutorial {
+  width: 496px;
+  height: 548px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #0e0e10
+}
+
+.tutorial p {
+  margin-bottom: 2px;
+  padding: 0 4px;
+  white-space: nowrap;
+  text-align: center
+}
+
+.download-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: radial-gradient(75.49% 80.59% at 50% 0, #bc1d20 0, rgba(17, 17, 19, 0) 100%);
+  opacity: .4;
+  z-index: 1
+}
+
+.player {
+  position: absolute;
+  width: 270px;
+  height: 249px;
+  z-index: 1000;
+  bottom: -9px;
+  left: 261px;
+  zoom: 1.2
+}
+
+.close-modal, .download-container .close {
+  position: absolute;
+  top: 24px;
+  width: 12px;
+  right: 24px
+}
+
+.headline-text {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 32px;
+  text-align: center;
+  color: #fff;
+  z-index: 20
+}
+
+.close-modal {
+  height: 13px
+}
+
+.download-container .close {
+  cursor: pointer;
+  height: 12px;
+  /* background: url(/images/download/close.svg?v1) 0 0/contain no-repeat; */
+  opacity: .5;
+  transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+  z-index: 99999
+}
+
+.download-container .close:hover, .download-modal-overlay .close:hover {
+  opacity: 1;
+  transform: rotate(180deg)
+}
+
+.download-torrent {
+  display: flex;
+  width: 432px;
+  text-decoration: none;
+  height: 56px;
+  padding: 0 24px;
+  align-items: center;
+  justify-content: space-between;
+  background: #bc1d20;
+  border: none;
+  z-index: 2;
+  border-radius: 9999px;
+  transition: .2s ease-in-out;
+  cursor: pointer
+}
+
+.download-torrent:hover {
+  background: #df2327
+}
+
+.download-torrent:focus {
+  background: #ac1c1f
+}
+
+.download-client p, .how-macbook-play p, .wrapper a p {
+  font-size: 14px;
+  color: #97979b;
+  font-weight: 700;
+  line-height: 16px;
+  font-style: normal
+}
+
+.download-torrent img {
+  width: 24px;
+  height: 24px
+}
+
+.download-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center
+}
+
+.download-client {
+  width: 368px;
+  position: relative;
+  margin-top: -4px;
+  border: 2px dashed rgba(255, 255, 255, .1);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: 0 0;
+  z-index: 1;
+  transition: .2s ease-in-out
+}
+
+.how-macbook-play, .updater-wrapper a, .wrapper a {
+  padding: 12px 16px;
+  transition: .2s ease-in-out;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex
+}
+
+.download-client p {
+  text-align: center;
+  opacity: 1
+}
+
+.wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  z-index: 1001
+}
+
+.wrapper a {
+  background: #19191c;
+  border-radius: 9999px;
+  width: 138.67px;
+  border: none;
+  align-items: center;
+  justify-content: space-between
+}
+
+.updater-wrapper a:hover, .wrapper a:hover {
+  background: #28282e
+}
+
+.how-macbook-play:focus p, .how-macbook-play:hover p, .updater-wrapper a:focus p, .updater-wrapper a:hover p, .wrapper a:focus p, .wrapper a:hover p {
+  color: #fff
+}
+
+.updater-wrapper a:focus, .wrapper a:focus {
+  background: #19191c
+}
+
+.wrapper a img {
+  width: 16px;
+  height: 16px
+}
+
+.how-macbook-play {
+  justify-content: space-between;
+  align-items: center;
+  width: 432px;
+  border: 2px dashed #2a2a30;
+  border-radius: 9999px;
+  opacity: .6;
+  background: 0 0;
+  z-index: 1001
+}
+
+.how-macbook-play:hover {
+  background: #28282e;
+  border: 2px solid transparent;
+  opacity: 1
+}
+
+.how-macbook-play:focus {
+  background: #19191c;
+  border: 2px solid transparent;
+  opacity: 1
+}
+
+.how-macbook-play img {
+  width: 13px;
+  height: 16px
+}
+
+.updater-container {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px
+}
+
+.updater-container p, .updater-container span {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 16px;
+  color: #fff
+}
+
+.updater-container span {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 125%;
+  white-space: pre-wrap;
+  letter-spacing: .02em;
+  color: #c5c5cd
+}
+
+.updater-wrapper {
+  display: flex;
+  gap: 8px
+}
+
+.updater-wrapper a {
+  width: 144px;
+  background: #19191c;
+  border: none;
+  border-radius: 9999px;
+  align-items: center;
+  justify-content: space-between
+}
+
+.updater-wrapper p {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: #97979b
+}
+
+.updater-wrapper img {
+  width: 12px;
+  height: 16px
+}
+
+.support-wrapper {
+  position: relative;
+  width: 432px;
+  height: 98px;
+  margin-top: 55px;
+  display: flex;
+  justify-content: flex-start;
+  /* background-image: url('/images/download/support.png'); */
+  border-radius: 8px;
+  padding: 25px 48px;
+  border: none;
+  background-opacity: 0.3;
+  cursor: pointer;
+  text-decoration: none
+}
+
+.support-wrapper:after {
+  position: absolute;
+  content: '';
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* background-image: url('/images/download/hover.png'); */
+  z-index: 1;
+  opacity: 0;
+  transition: opacity .2s ease-in-out
+}
+
+.support-wrapper:hover:after {
+  opacity: 1
+}
+
+.support-wrapper p {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #fff;
+  white-space: pre-wrap;
+  z-index: 2
+}
+
+.support-wrapper img {
+  position: absolute;
+  right: 20px;
+  bottom: 13px;
+  width: 98px;
+  height: 102px;
+  z-index: 2
+}
+
+.player-background {
+  width: 91px;
+  height: 165px;
+  position: absolute;
+  bottom: 23px;
+  left: 404px;
+  background: #bc1d20;
+  filter: blur(75px);
+  transform: rotate(8.42deg)
+}
+
+.download-modal-overlay {
+  z-index: 99999999;
+  overflow-y: hidden
+}
+
+.download-modal-overlay .close {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  /* background: url(/images/download/close.svg?v1) 0 0/contain no-repeat; */
+  opacity: .5;
+  transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+  z-index: 99999
+}
+
+.download-modal-overlay .overlay-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px
+}
+
+.download-modal-overlay .overlay-container .lottie-container {
+  width: 150px;
+  height: 150px;
+  object-fit: contain
+}
+
+.download-modal-overlay .overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(var(--black-rgb), .9);
+  font-size: 25px;
+  text-align: left;
+  z-index: -1
+}
+
+.download-modal-overlay .overlay-container h2 {
+  font-family: Proxima, sans-serif;
+  font-weight: 800;
+  font-size: 50px;
+  color: #fff
+}
+
+.download-modal-overlay .overlay-container p {
+  font-size: 30px;
+  color: #fff
+}

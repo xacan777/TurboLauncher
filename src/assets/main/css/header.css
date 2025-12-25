@@ -1,0 +1,341 @@
+nav {
+    font-family: "Strong Sword", sans-serif;
+
+    width: 100%;
+    z-index: 1001;
+    height: 7vh;
+    background-color: rgba(0, 0, 0, .907);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .mobile {
+    display: none
+}
+
+nav ul:nth-child(2) {
+    display: flex;
+    height: 100%;
+    padding: 0vh .5vh;
+    position: relative;
+    z-index: 2
+}
+
+nav ul:nth-child(2) .lang {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 1.7vh;
+    position: relative;
+    justify-content: center;
+    cursor: pointer
+}
+
+nav ul:nth-child(2) .lang:hover .lang_drop {
+    transform: scaleY(100%);
+    top: 95%;
+    opacity: 1
+}
+
+nav ul:nth-child(2) .lang:hover span {
+    color: #fff
+}
+
+nav ul:nth-child(2) .lang:hover span::before {
+    opacity: 1
+}
+
+nav ul:nth-child(2) .lang:hover span i {
+    transform: rotate(180deg)
+}
+
+nav ul:nth-child(2) .lang_drop {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: .7s;
+    align-items: center;
+    top: 50%;
+    padding: 2vh;
+    border-radius: 1vh;
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+    width: 120%;
+    background-color: #292238
+}
+
+nav ul:nth-child(2) .lang_drop::after {
+    content: "";
+    position: absolute;
+    top: -0.5vh;
+    width: 1.5vh;
+    height: 1.5vh;
+    background-color: #292238;
+    transform: rotate(45deg)
+}
+
+nav ul:nth-child(2) .lang_drop a:not(:last-child) {
+    margin-bottom: 1vh
+}
+
+nav ul:nth-child(2) .lang_drop a {
+    color: #9c969f
+}
+
+nav ul:nth-child(2) .lang_drop a:hover {
+    color: #fff
+}
+
+nav ul:nth-child(2) .lang span {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #a5a5a5
+}
+
+nav ul:nth-child(2) .lang span::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    opacity: 0;
+    pointer-events: none;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .718)
+}
+
+nav ul:nth-child(2) .lang span .flag {
+    margin-right: 1.5vh;
+    width: 2.2vh;
+    height: 2.2vh;
+    border-radius: 100%;
+    overflow: hidden
+}
+
+nav ul:nth-child(2) .lang span .flag img {
+    height: 100%
+}
+
+nav ul:nth-child(2) .lang span i {
+    margin-left: 1.1vh;
+    color: gray;
+    position: relative;
+    top: .3vh;
+    transition: .5s
+}
+
+nav ul:nth-child(2) li {
+    height: 100%;
+    display: flex;
+    align-items: center
+}
+
+nav ul:nth-child(2) .secon_btn {
+    margin-left: 3vh
+}
+
+nav ul:nth-child(2) .secon_btn span i {
+    position: relative;
+    top: .2vh
+}
+
+nav ul:nth-child(1) {
+    display: flex;
+    height: 100%
+}
+
+nav ul:nth-child(1) li:nth-child(1) {
+    margin: 0vh 3vh
+}
+
+nav ul:nth-child(1) li {
+    height: 100%;
+    font-size: 1.8vh;
+    display: flex;
+    align-items: center;
+    margin: 0vh 4vh
+}
+
+nav ul:nth-child(1) li img {
+    width: 8vh
+}
+
+nav ul:nth-child(1) li a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, .6);
+
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+nav ul:nth-child(1) li a:hover {
+    color: #fff;
+    text-shadow: 0vh 0vh 2vh #fff
+}
+
+nav ul:nth-child(1) li a:hover i {
+    color: rgba(255, 255, 255, .468)
+}
+
+nav ul:nth-child(1) li a i {
+    margin-right: 1.5vh;
+    position: relative;
+    top: .2vh;
+    color: rgba(255, 255, 255, .25);
+    text-shadow: none
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: row-reverse;
+    }
+
+    nav .nav {
+        position: fixed;
+        height: 100vh;
+        left: -100%;
+        top: 7vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.95);
+        width: 38vh;
+        transition: 0.5s;
+    }
+
+    nav .nav.active {
+        left: 0;
+    }
+
+    nav ul:nth-child(1) li:not(:last-child) {
+        border-bottom: 0.2vh solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul:nth-child(1) li {
+        height: auto;
+        width: 100%;
+        padding: 3vh 4vh;
+    }
+
+    nav ul:nth-child(1) li:nth-child(1) {
+        height: 15vh;
+        justify-content: center;
+    }
+
+    nav ul:nth-child(1) li:nth-child(1) img {
+        width: 17vh;
+    }
+
+    nav ul:Nth-child(2) .secon_btn {
+        width: 20vh;
+    }
+
+    nav .mobile {
+        display: block;
+        color: white;
+        font-size: 2vh;
+        padding-left: 2.5vh;
+        z-index: 10;
+    }
+
+    nav .mobile.active .fa-bars {
+        display: none;
+    }
+
+    nav .mobile.active .fa-xmark {
+        display: block;
+    }
+
+    nav .mobile .fa-xmark {
+        display: none;
+    }
+
+    .menu_navigation {
+        display: none;
+    }
+}
+
+
+nav .secon_btn {
+    position: relative;
+    width: 24vh;
+    height: 5vh;
+    border-radius: 10vh;
+    padding: .4vh;
+    display: flex;
+    border: .2vh solid #aba693;
+}
+
+nav .secon_btn .decoration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav .secon_btn .decoration img:Nth-child(1) {
+    left: 0;
+}
+
+nav .secon_btn .decoration img:Nth-child(2) {
+    right: 0;
+}
+
+nav .secon_btn .decoration img {
+    position: absolute;
+    width: 4vh;
+}
+
+nav .secon_btn span {
+    width: 100%;
+    height: 100%;
+    background-color: #8f1f1f;
+    border: .2vh solid rgba(208,186,186,.473);
+    border-radius: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding-bottom: .3vh;
+    font-size: 1.7vh;
+}
+
+nav .secon_btn span i {
+    color: rgba(255,255,255,.525) !important;
+    margin-right: 1vh;
+    margin-left: 0 !important;
+}
+
+.selectable-language {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.selectable-language .flag {
+    width: 2.2vh;
+    height: 2.2vh;
+}
+
+.selectable-language .flag img {
+    height: 100%;
+}
+
+.footer a, .footer .copyright p {
+    font-family: "Strong Sword", sans-serif !important;
+}
