@@ -1,23 +1,16 @@
 <template lang="pug">
 .login
+  h2 Создание TURBO аккаунта
+  p.login-subtitle Используйте один логин для лаунчера и форума.
   UiInput.field-20(
     v-model="form.account"
     type="text"
-    placeholder="Аккаунт"
+    placeholder="Логин"
     :is-error="isError(v$.form.account)"
     @update:modelValue="setTouchValidator(v$.form.account)"
   )
     template(#icon)
       icon-user
-  UiInput.field-20(
-    v-model="form.email"
-    type="email"
-    placeholder="Почта"
-    :is-error="isError(v$.form.email)"
-    @update:modelValue="setTouchValidator(v$.form.email)"
-  )
-    template(#icon)
-      icon-mail
   UiInput.field-20(
     v-model="form.password"
     type="password"
@@ -50,15 +43,14 @@ import IconUser from '@/assets/icons/icon-user.vue';
 import IconLock from '@/assets/icons/icon-lock.vue';
 import UiButtonPrimary from '@/uikit/buttons/ui-button-primary.vue';
 import UiLink from '@/uikit/ui-link.vue';
-import { email, required, sameAs } from '@vuelidate/validators';
+import { required, sameAs } from '@vuelidate/validators';
 import validationMixin from '@/mixins/validation-mixin';
-import IconMail from '@/assets/icons/icon-mail.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'RegisterView',
   mixins: [validationMixin],
   components: {
-    IconMail,
     UiLink,
     UiButtonPrimary,
     IconLock,
@@ -69,7 +61,6 @@ export default {
     formLoading: false,
     form: {
       account: '',
-      email: '',
       password: '',
       passwordRetry: '',
     },
@@ -79,10 +70,6 @@ export default {
       form: {
         account: {
           required,
-        },
-        email: {
-          required,
-          email,
         },
         password: {
           required,
@@ -95,27 +82,29 @@ export default {
     };
   },
   methods: {
-    onAuth() {
+    ...mapActions(['register']),
+    async onAuth() {
       this.formLoading = true;
-      this.$http
-        .get('createAccount.php', {
-          params: {
-            login: this.form.account,
-            mail: this.form.email,
-            password: this.form.password,
-          },
-        })
-        .then(() => {
-          this.$notify({
-            group: 'main',
-            type: 'success',
-            text: 'Вы успешно зарегистрировались, авторизуйтесь под своим логином',
-          });
-          this.$router.push({ name: 'login' });
-        })
-        .finally(() => {
-          this.formLoading = false;
+      try {
+        await this.register({
+          username: this.form.account,
+          password: this.form.password,
         });
+        this.$notify({
+          group: 'main',
+          type: 'success',
+          text: 'Вы успешно зарегистрировались, авторизуйтесь под своим логином',
+        });
+        this.$router.push({ name: 'login' });
+      } catch (error) {
+        this.$notify({
+          group: 'main',
+          type: 'error',
+          text: error.message,
+        });
+      } finally {
+        this.formLoading = false;
+      }
     },
   },
 };
@@ -126,6 +115,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+
+  .login-subtitle {
+    color: #9da3c5;
+    margin-bottom: 18px;
+  }
 
   .field {
     &-20 {
