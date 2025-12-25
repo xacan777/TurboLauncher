@@ -1,9 +1,11 @@
 <template lang="pug">
 .login
+  h2 TURBO аккаунт
+  p.login-subtitle Войдите, чтобы получить доступ к базе данных и форуму.
   UiInput.field-20(
     v-model="form.account"
     type="text"
-    placeholder="Аккаунт"
+    placeholder="Логин"
     :is-error="isError(v$.form.account)"
     @update:modelValue="setTouchValidator(v$.form.account)"
   )
@@ -35,7 +37,6 @@ import UiLink from '@/uikit/ui-link.vue';
 import { required } from '@vuelidate/validators';
 import validationMixin from '@/mixins/validation-mixin';
 import { mapActions } from 'vuex';
-import { ipcRenderer } from 'electron';
 
 export default {
   name: 'LoginView',
@@ -66,79 +67,35 @@ export default {
       },
     };
   },
-  mounted() {
-    // eslint-disable-next-line no-unused-vars
-    ipcRenderer.on('auth-response', (event, { success, data }) => {
-      if (success) {
-        this.$http
-          .get('getUserInfo.php', {
-            params: {
-              do_user_info: '',
-              email: this.form.account,
-            },
-          })
-          .then((dataResponse) => {
-            this.setIsClientReady(true);
-            this.setIsAfterAuthorized(true);
-            this.setAuthorized(true);
-            this.setUser(dataResponse);
-            this.setUserBase({
-              login: this.form.account,
-              password: this.form.password,
-            });
-            this.setClientParams({
-              param1: `${dataResponse.mUserId.trim()}|${data.param1}`,
-              param2: data.param2,
-            });
-
-            this.$appEvent('mainFrame');
-          });
-      } else {
+  methods: {
+    ...mapActions([
+      'login',
+      'setUserBase',
+    ]),
+    async onAuth() {
+      if (this.formLoading) return;
+      this.formLoading = true;
+      try {
+        await this.login({
+          username: this.form.account,
+          password: this.form.password,
+        });
+        this.setUserBase({
+          login: this.form.account,
+          password: this.form.password,
+        });
+        this.$router.push({ name: 'home' });
+        this.$appEvent('mainFrame');
+      } catch (error) {
         this.$notify({
           title: 'Ошибка авторизации',
           group: 'main',
-          text: data,
+          text: error.message,
           type: 'error',
         });
+      } finally {
+        this.formLoading = false;
       }
-
-      this.formLoading = false;
-    });
-  },
-  methods: {
-    ...mapActions([
-      'setAuthorized',
-      'setUser',
-      'setUserBase',
-      'setIsClientReady',
-      'setClientParams',
-      'setIsAfterAuthorized',
-    ]),
-    onAuth() {
-      if (this.formLoading) return;
-
-      this.formLoading = true;
-      ipcRenderer.send('auth', {
-        login: this.form.account,
-        password: this.form.password,
-      });
-
-      // this.$http
-      //   .post('auth', {
-      //     mUserId: this.form.account,
-      //     password: this.form.password,
-      //   })
-      //   .then(({ user }) => {
-      //     this.setAuthorized(true);
-      //     this.setUser(user);
-      //     this.$appEvent('mainFrame');
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   })
-      //   .finally(() => {
-      //     this.formLoading = false;
-      //   });
     },
   },
 };
@@ -149,6 +106,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+
+  .login-subtitle {
+    color: #9da3c5;
+    margin-bottom: 18px;
+  }
 
   .field {
     &-20 {

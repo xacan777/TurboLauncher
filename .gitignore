@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+.env
+forum.json
+news.json
+*.log
+.yarn
+.yarnrc.yml
+__pycache__/
+*.pyc
