@@ -44,6 +44,12 @@
 
 ## Запуск frontend (Vue/Electron)
 
+> Рекомендуется **Node 16.x** (см. `.nvmrc`). Если видите ошибки вида `The engine "node" is incompatible... Got "24.x.x"`, переключите Node:
+> ```bash
+> nvm install 16
+> nvm use 16
+> ```
+
 1. Установите зависимости:
    ```bash
    yarn install
