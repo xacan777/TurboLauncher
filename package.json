@@ -14,8 +14,14 @@
         "electron:build-windows": "vue-cli-service electron:build -w",
         "electron:build-full": "vue-cli-service electron:build -m -w",
         "electron:serve": "vue-cli-service electron:serve",
+        "dev": "vue-cli-service electron:serve",
         "postinstall": "electron-builder install-app-deps",
-        "postuninstall": "electron-builder install-app-deps"
+        "postuninstall": "electron-builder install-app-deps",
+        "preinstall": "node ./scripts/check-node.js"
+    },
+    "engines": {
+        "node": "16.x",
+        "yarn": "1.x"
     },
     "dependencies": {
         "@electron/remote": "^2.0.8",
