@@ -9,7 +9,8 @@
       .close-button(@click="onCloseApp")
         IconClose
     .auth-content-logo
-      img(srcset="@/assets/images/logo@2x.png 2x" src="@/assets/images/logo.png")
+      .brand-mark TURBO
+      .brand-subtitle Launcher
     .auth-content-menu
       .auth-content-menu-line(ref="line")
       router-link.auth-content-menu-item(
@@ -43,12 +44,8 @@ export default {
   beforeUpdate() {
     this.itemRefs = [];
   },
-  updated() {
-    console.log(this.itemRefs);
-  },
   methods: {
     setItemRef(el) {
-      console.log(el);
       if (el) {
         this.itemRefs.push(el);
       }
@@ -56,7 +53,6 @@ export default {
     setMenuActiveLine(clear = false) {
       const menuItems = this.itemRefs;
       const activeLine = this.$refs.line;
-      console.log(Array.from(menuItems));
       const activeItem = menuItems.find((item) => item.to.name === this.$route.name);
       if (!clear || activeItem) {
         // const activeItemIndex = Array.from(menuItems).indexOf(activeItem.$el);
@@ -173,6 +169,21 @@ export default {
       margin-bottom: 50px;
       -webkit-app-region: drag;
       -webkit-user-select: none;
+      color: #fff;
+
+      .brand-mark {
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+      }
+
+      .brand-subtitle {
+        color: #9da3c5;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 12px;
+        margin-top: 4px;
+      }
     }
 
     &-menu {

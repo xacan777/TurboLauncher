@@ -1,8 +1,8 @@
 {
-    "name": "launcher",
-    "version": "0.1.0",
+    "name": "turbo-launcher",
+    "version": "1.0.0",
     "private": true,
-    "description": "R2Launcher Downloader",
+    "description": "TURBO Launcher",
     "author": "mrs4z",
     "main": "background.js",
     "scripts": {
