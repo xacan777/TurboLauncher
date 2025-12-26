@@ -1,0 +1,20 @@
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+  },
+  extends: [
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+  ],
+  parserOptions: {
+    ecmaVersion: 2021,
+    sourceType: 'module',
+  },
+  rules: {
+    'no-console': 'off',
+    'no-debugger': 'off',
+    'import/no-extraneous-dependencies': 'off',
+  },
+};
