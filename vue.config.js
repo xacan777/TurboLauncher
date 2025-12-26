@@ -20,9 +20,9 @@ module.exports = defineConfig({
         //   perMachine: true,
         //   allowToChangeInstallationDirectory: true,
         // },
-        appId: 'com.dev.r2legacy',
-        productName: 'R2 Legacy',
-        copyright: 'Legacy R2',
+        appId: 'com.turbo.launcher',
+        productName: 'TURBO Launcher',
+        copyright: 'TURBO',
         win: {
           icon: './public/icons/win.ico',
         },
