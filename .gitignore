@@ -9,3 +9,4 @@ news.json
 .yarnrc.yml
 __pycache__/
 *.pyc
+.eslintrc.json
