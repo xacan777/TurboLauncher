@@ -1,10 +1,12 @@
 import { storage } from '@/config/storage.config';
 import { createStore } from 'vuex';
+import { api } from '@/services/api';
 
 export default createStore({
   state: {
     isAuthorized: storage.getStorageSync('isAuthorized') || false,
     user: storage.getStorageSync('user') || {},
+    token: storage.getStorageSync('token') || null,
     isAfterAuthorized: false,
     userBase: {
       login: null,
@@ -26,6 +28,7 @@ export default createStore({
   },
   getters: {
     isAuthorized: (state) => state.isAuthorized,
+    token: (state) => state.token,
     isAfterAuthorized: (state) => state.isAfterAuthorized,
     user: (state) => state.user,
     ticketMulti: (state) => state.ticketMulti,
@@ -54,6 +57,9 @@ export default createStore({
     },
     setUser(state, payload) {
       state.user = payload;
+    },
+    setToken(state, payload) {
+      state.token = payload;
     },
     setUserBalance(state, payload) {
       state.user.mBalance = payload;
@@ -97,8 +103,24 @@ export default createStore({
           commit('setClientParams', storage.getStorageSync('clientParams'));
         }
 
+        const storageToken = storage.getStorageSync('token');
+        if (storageToken) {
+          commit('setToken', storageToken);
+          commit('setAuthorized', true);
+        }
+
         resolve();
       });
+    },
+    async login({ commit }, payload) {
+      const response = await api.login(payload);
+      commit('setToken', response.token);
+      storage.setStorageSync('token', response.token);
+      commit('setAuthorized', true);
+      commit('setUser', response.user);
+    },
+    async register(_, payload) {
+      return api.register(payload);
     },
     setIsAfterAuthorized({ commit }, payload) {
       commit('setIsAfterAuthorized', payload);
@@ -137,36 +159,17 @@ export default createStore({
       return new Promise((resolve) => {
         commit('setAuthorized', false);
         commit('setUser', {});
+        commit('setToken', null);
         if (storage.hasKey('isAuthorized')) {
           storage.removeStorage({ key: 'isAuthorized' }).then(async () => {
             if (storage.hasKey('user')) await storage.removeStorage({ key: 'user' });
             if (storage.hasKey('clientParams'))
               await storage.removeStorage({ key: 'clientParams' });
             if (storage.hasKey('userBase')) await storage.removeStorage({ key: 'userBase' });
+            if (storage.hasKey('token')) await storage.removeStorage({ key: 'token' });
           });
         }
         resolve();
-      });
-    },
-    fetchBalanceUser({ getters, commit }) {
-      if (!getters.user?.mUserId) return false;
-      return new Promise((resolve, reject) => {
-        this.$app.$http
-          .get('getBalance.php', {
-            params: {
-              do_user_balance: '',
-              user_id: getters.user.mUserId.trim(),
-            },
-          })
-          .then((balance) => {
-            if (balance?.mBalance) {
-              commit('setUserBalance', +balance.mBalance);
-            }
-            resolve();
-          })
-          .catch(() => {
-            reject();
-          });
       });
     },
   },
